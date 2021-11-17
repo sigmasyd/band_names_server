@@ -7,21 +7,10 @@ const app = express();
 
 // Noode server
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+module.exports.io = require("socket.io")(server);
+require('./sockets/socket');
 
 // Sockets message
-io.on('connection',client=>{
-	console.log("Cliente conectado");
-	client.on('disconnect',()=>{
-		console.log("Cliente desconectado");
-	});
-	client.on('mensaje',(payload)=>{
-		console.log('Mensaje: ', payload);
-
-		io.emit('mensaje',{admin: 'nuevo mensaje'});
-
-	});
-});
 
 
 const publicPath = path.resolve(__dirname,'public');
