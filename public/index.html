@@ -15,7 +15,12 @@
 			console.log('Conectado al servidor');
 		});
 		socket.on('disconnect',function(){
-			console.log('Perdimos conexcion con el servidor');
+			console.log('Perdimos conexion con el servidor');
+		});
+		socket.emit('mensaje',{ nombre: 'Carlos' });
+
+		socket.on('mensaje',(payload)=>{
+			console.log("Escuchando: ", payload);
 		});
 	</script>
 </body>
